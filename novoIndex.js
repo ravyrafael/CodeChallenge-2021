@@ -1,6 +1,6 @@
 const { Console } = require('console');
 const fs = require('fs');
-var arquivo = 'matrizb'
+var arquivo = 'matrizd'
 var text = fs.readFileSync(arquivo + '.txt', 'utf8')
 
 var mapa = text.split('\n')
@@ -40,8 +40,8 @@ var logger = fs.createWriteStream(arquivo + 'result.txt', {
     flags: 'a' // 'a' means appending (old data will be preserved)
 })
 
-locais = locais.sort((a, b) => (b.velocidade) - (a.velocidade))
-totalAntenas = totalAntenas.sort((a, b) => b.velocidadeConexao - a.velocidadeConexao)
+locais = locais.sort((a, b) => (a.latencia) - (b.latencia))
+totalAntenas = totalAntenas.sort((a, b) => (b.velocidadeConexao + b.alcance) - (a.velocidadeConexao+ a.alcance))
 logger.write(totalAntenas.length + '\n')
 totalAntenas.forEach((antena, i) => {
     console.log(i);
