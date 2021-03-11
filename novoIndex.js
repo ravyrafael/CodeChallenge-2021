@@ -1,6 +1,6 @@
 const { Console } = require('console');
 const fs = require('fs');
-var arquivo = 'matrizc'
+var arquivo = 'matrizb'
 var text = fs.readFileSync(arquivo + '.txt', 'utf8')
 
 var mapa = text.split('\n')
@@ -40,12 +40,9 @@ var logger = fs.createWriteStream(arquivo + 'result.txt', {
     flags: 'a' // 'a' means appending (old data will be preserved)
 })
 
-locais = locais.sort((a, b) => (b.latencia) - (a.latencia))
-totalAntenas = totalAntenas.sort((a, b) => a.alcance - b.alcance)
+locais = locais.sort((a, b) => (b.velocidade) - (a.velocidade))
+totalAntenas = totalAntenas.sort((a, b) => b.velocidadeConexao - a.velocidadeConexao)
 logger.write(totalAntenas.length + '\n')
-var posicaox
-var posicaoy
-var locaisIndex = 0
 totalAntenas.forEach((antena, i) => {
     console.log(i);
     if (i == 0) {
