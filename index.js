@@ -1,5 +1,5 @@
 const fs = require('fs');
-var arquivo = 'matrizf'
+var arquivo = 'matriza'
 var text = fs.readFileSync(arquivo+ '.txt', 'utf8')
 
 var mapa = text.split('\n')
@@ -67,41 +67,9 @@ console.log(i)
                 tryRandonPosition()
             }
         }
-        if (i == 0) {
-            posicaox = Math.floor(largura / 2)
-            posicaoy = Math.floor(altura / 2)
-            antena.position = {
-                x: posicaox,
-                y: posicaoy
-            }
-        }
-        else {
-            var antenaAnterior = totalAntenas[i - 1]
-            var proximaPosX = antenaAnterior.position.x + antenaAnterior.alcance
-            var proximaPosY = antenaAnterior.position.y + antenaAnterior.alcance
-            if (proximaPosX >= largura) {
-                proximaPosX = 0
-                proximaPosY = totalAntenas[0].alcance + totalAntenas[0].position.y + 1
-            }
-            if (proximaPosY >= altura) {
-                proximaPosY = 0
-                proximaPosX = totalAntenas[0].alcance + totalAntenas[0].position.x + 1
-            }
-            if (!totalAntenas.some(ant => {
-                return ant.position && ant.position.x == proximaPosX && ant.position.y == proximaPosY
-            }
-            )) {
-                antena.position = {
-                    x: proximaPosX,
-                    y: proximaPosY
-                }
 
-            }
-            else {
-                tryRandonPosition();
-            }
+         tryRandonPosition();
 
-        }
     }
     catch{
         console.log(i)
